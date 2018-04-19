@@ -33,7 +33,7 @@ class Memory{
         MemorySlot* getSlot(int);
         bool putData(int*, int, int);
         void printData();
-        void getDataInSlot(int, int);
+        void getDataInSlot(MemorySlot*);
         bool putDataAtLocation(int, int);
         int getDataAtLocation(int);
 };

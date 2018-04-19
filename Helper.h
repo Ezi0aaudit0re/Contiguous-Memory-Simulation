@@ -16,7 +16,8 @@ using namespace std;
 
 void initializeArray(int[], int);
 MemorySlot* getSlot(int, Memory*);
-bool copyFromSlotToMemory(MemorySlot*, Memory*);
+bool copyFromSlotToMemory(MemorySlot*, Memory*, int);
+void printIntArray(int*, int);
 
 
 

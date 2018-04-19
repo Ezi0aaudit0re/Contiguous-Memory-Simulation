@@ -1,16 +1,27 @@
-This program simmulates a contigous memory
+Author - Aman Nagpal
+email - amannagpal4@gmail.com
+
+This program simulates a contigous memory
 
 
-Defaults values for a memory slot 
+Defaults values for a memory slot
 
 baseRegister = -1
-data all values is 0
+default value for data is -1 in memory and memory slot
 limitRegister = -1
 endSlot = -1
 
+whenever we print data we print data from Memory Class and not data in MemorySlot
 
-TODO
+The program by default runs on "Best Fit " to run using First Fit algorithm
+        Change ALGO constant in "includes.h" to 1
 
-free space for memory array at the end of the program
-in deconstructor clear the data on the memory
-free space allocated for MEMORY 
+If we cannot allocate a slot (size might be too big and slot not available) we return -1 which is default baseReg
+
+To compile the code run the following command
+
+g++ -std=c++11 Algorithm.cpp Driver.cpp Interface.cpp Memory.cpp MemorySlot.cpp Helper.cpp
+
+I have also attached a compiled version of the program.
+
+Please contact me on anagpal4@bu.edu if you have any queries

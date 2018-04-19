@@ -46,8 +46,6 @@
 
      }
 
-     cout << "Value of min slot is: " << endl;
-     cout << minSlot << endl;
 
      if(minSlot != NULL){
         minSlot->setAllocated(name);
@@ -84,7 +82,7 @@
 
 
      }
-     cout << "SLot of size" << size << " cannot be allocated using FIRST FIT because no slot of this size" << endl;
+     cout << "SLot of size " << size << " cannot be allocated using FIRST FIT because no slot of this size" << endl;
      return -1;
 
 

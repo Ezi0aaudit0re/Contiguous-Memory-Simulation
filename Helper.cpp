@@ -52,10 +52,9 @@ MemorySlot* getSlot(int baseReg, Memory* memory){
  * @param memory our main physical memory
  * @return true if all goes well otherwise false
  */
- bool copyFromSlotToMemory(MemorySlot* slot, Memory* memory){
+ bool copyFromSlotToMemory(MemorySlot* slot, Memory* memory, int dataSize){
 
     try {
-        int dataSize = slot->getDataSize();
         int* data = slot->getData();
         int baseReg = slot->getBaseReg();
         if(memory->putData(data, dataSize, baseReg))
@@ -72,3 +71,14 @@ MemorySlot* getSlot(int baseReg, Memory* memory){
 
 
 }
+
+/**
+ * This function takes in an array of integers and prints then ouut
+ * @param arr -> the array to print
+ * @param size -> the size of the array
+ */
+ void printIntArray(int* arr, int size){
+     for(int i = 0; i < size; i++){
+         cout << arr[i] << endl;
+     }
+ }

@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Memory.h" // this also includes MemorySlot.h
 #include "Includes.h"
+#include "Helper.h"
 
 
 using namespace std;
@@ -21,6 +22,8 @@ Memory::Memory(int size){
 
     this->size = size;
     this->data = new int[this->size];
+    // initialize the memory with defalt values
+    initializeArray(this->data, this->size);
     this->numberSlots = 0;
 
     // create slots of randown limit
@@ -134,7 +137,7 @@ MemorySlot* Memory::getSlot(int location){
            cout << "Slot: " << slot->getSlotName() << endl;
            slot->printData();
            // print the data from memory
-           this->getDataInSlot(slot->getBaseReg(), slot->getLimit());
+           this->getDataInSlot(slot);
 
            cout << "--------------------------------" << endl;
 
@@ -151,10 +154,12 @@ MemorySlot* Memory::getSlot(int location){
     * @param BaseReg -> The starting point
     * @param LimitReg -> The limit of the slot
     */
-    void Memory::getDataInSlot(int baseReg, int limitReg){
+    void Memory::getDataInSlot(MemorySlot* slot){
+        int baseReg = slot->getBaseReg();
+        int limitReg = slot->getLimit();
         // baseReg + limitReg act as the len and we go to -1
         for(int i = baseReg; i < (baseReg + limitReg); i++){
-            if(this->getDataAtLocation(i) != 0)
+            if(slot->getAllocated())
                 cout << this->getDataAtLocation(i) << endl;
         }
 

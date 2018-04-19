@@ -73,6 +73,7 @@ void my_free(int baseReg, Memory* memory){
     else{
         // clear the slot by calling its deconstructor
         slot->freeSlot();
+        copyFromSlotToMemory(slot, memory, slot->getLimit()); // set all the valeus to defalt -1 values in memory
     }
 
 }
@@ -96,7 +97,7 @@ void my_read(int baseReg, int data[], int size, Memory* memory){
         if(size <= slot->getLimit()){
             // copy into data
             for(int i = 0; i < size; i++){
-                data[i] = slot->getValue(i);
+                data[i] = memory->getDataAtLocation((slot->getBaseReg() + i));
             }
 
         }
@@ -118,13 +119,14 @@ void my_write(int baseReg, int data[], int size, Memory* memory){
         cout << "Adress: " << baseReg << " is not available in the memory" << endl;
 
     }
-    else{
-        if(size <= slot->getLimit())
-            slot->fillDataInSlot(data, size);
-            // write to meory
-            if(copyFromSlotToMemory(slot, memory) == false){
-                cout << "Problem occured in my_write in interface at Base Register: " << baseReg << endl;
+    else if(size <= slot->getLimit()){
 
-            }
+       slot->fillDataInSlot(data, size);
+       // write to meory
+       if(copyFromSlotToMemory(slot, memory, slot->getDataSize()) == false){
+           cout << "Problem occured in my_write in interface at Base Register: " << baseReg << endl;
+
+       }
+
     }
 }

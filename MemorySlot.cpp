@@ -38,7 +38,7 @@ MemorySlot::MemorySlot(int baseReg, int limitReg){
 bool MemorySlot::fillDataInSlot(int data[], int size){
 
     try{
-        if(size <= this->limitRegister){
+        if(size <= this->getLimit()){
             // check size so doesnot go to another partition
             for (int i = 0; i < size; i++){
                 this->data[i] = data[i];
@@ -58,9 +58,10 @@ bool MemorySlot::fillDataInSlot(int data[], int size){
  * This is a deconstrctor that is called when the slot is freed i.e data is deleted inside the slot
  */
 void MemorySlot::freeSlot(){
-    initializeArray(this->data, this->getLimit()); // set all the values to 0
+    initializeArray(this->data, this->getLimit()); // set all the values to -1
     this->allocated = false;
     this->dataSize = 0;
+    this->setSlotName("Not Allocated");
 }
 
 
@@ -79,7 +80,7 @@ void MemorySlot::freeSlot(){
  */
 
  void MemorySlot::printData(){
-     cout << "Name: " << this->getSlotName() << " BaseReg: " << this->getBaseReg() << ", Limit: " << this->getLimit() << ", End: " << this->getEndBlock() << ", Allocated: " <<  this->getAllocated() << endl;
+     cout << "Name: " <<this->getSlotName() << " DataSize: " << this->getDataSize() << " BaseReg: " << this->getBaseReg() << ", Limit: " << this->getLimit() << ", End: " << this->getEndBlock() << ", Allocated: " <<  this->getAllocated() << endl;
  }
 
 
